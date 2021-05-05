@@ -2,10 +2,10 @@
 // 1. Use the D3 library to read in `samples.json`.
 function buildPlot(id) {
     d3.json("samples.json").then((data) => {
-        console.log(data);
+        // console.log(data);
         
         var samplesFilter = data.samples.filter(s=> s.id.toString() ===id)[0];
-        console.log(samplesFilter);
+        // console.log(samplesFilter);
         
         var sampleValues = samplesFilter.sample_values.slice(0,10).reverse();
         
@@ -13,6 +13,16 @@ function buildPlot(id) {
         var otuIDs = otuTop10.map(d=> "OTU " + d)
         var otuLabels = samplesFilter.otu_labels.slice(0,10);
 
+        var trace = {
+            x: sampleValues,
+            y: otuIDs,
+            text: otuLabels,
+            marker: {
+                color: 'rgb(150,120,190)'
+            },
+            type: "bar",
+            orientation: "h"
+        };
     })
 }
 
@@ -33,6 +43,7 @@ function buildPlot(id) {
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
 
 // 6. Update all of the plots any time that a new sample is selected.
+
 
 // ## Advanced Challenge Assignment (Optional)
 
