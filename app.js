@@ -54,6 +54,29 @@ function buildPlot(id) {
 // * Use `otu_ids` for the marker colors.
 // * Use `otu_labels` for the text values.
 
+        var trace_bubble = {
+            x: samplesFilter.otu_ids,
+            y: samplesFilter.sample_values,
+            text: samplesFilter.otu_labels,
+            mode: "markers",
+            marker: {
+                size: samplesFilter.sample_values,
+                color: samplesFilter.otu_ids
+            }
+        };
+
+        var data_bubble = [trace_bubble];
+        var layout_bubble = {
+            title: "Bubble Chart",
+            xaxis:{
+                title: "OTU IDs"
+            },
+            height: 500,
+            width: 800
+        };
+
+        Plotly.plotIt("bubble",data_bubble,layout_bubble);
+
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
