@@ -95,7 +95,22 @@ function plotInfo(id) {
 }
 
 // 6. Update all of the plots any time that a new sample is selected.
+function sampleSelection(id) {
+    buildPlot(id);
+    plotInfo(id);
+}
 
+function init() {
+    var dropdownMenu = d3.select("#selDataset");
+    d3.json("samples.json").then((data)=> {
+        data.names.forEach(function(name) {
+            dropdownMenu.append("option").text(name).property("value");
+        });
+        buildPlot(data.names[0]);
+        plotInfo(data.names[0]);
+    });
+}
+init();
     
 
 // ## Advanced Challenge Assignment (Optional)
