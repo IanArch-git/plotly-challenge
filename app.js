@@ -1,4 +1,3 @@
-// ## Step 1: Plotly
 // 1. Use the D3 library to read in `samples.json`.
 function buildPlot(id) {
     d3.json("samples.json").then((data) => {
@@ -111,9 +110,3 @@ function init() {
     });
 }
 init();
-    
-
-// ## Advanced Challenge Assignment (Optional)
-
-// * Adapt the Gauge Chart from <https://plot.ly/javascript/gauge-charts/> to plot the weekly washing frequency of the individual.
-// * Update the chart whenever a new sample is selected.
