@@ -20,7 +20,7 @@ function buildPlot(id) {
             y: otuIDs,
             text: otuLabels,
             marker: {
-                color: 'rgb(150,120,190)'
+                color: 'rgb(160,110,180)'
             },
             type: "bar",
             orientation: "h"
@@ -62,12 +62,12 @@ function buildPlot(id) {
 
         var data_bubble = [trace_bubble];
         var layout_bubble = {
-            title: "Bubble Chart",
+            title: "Samples",
             xaxis:{
                 title: "OTU IDs"
             },
-            height: 500,
-            width: 800
+            height: 700,
+            width: 1100
         };
 
         Plotly.newPlot("bubble",data_bubble,layout_bubble);
