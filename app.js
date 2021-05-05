@@ -13,6 +13,11 @@ function buildPlot(id) {
         var otuIDs = otuTop10.map(d=> "OTU " + d)
         var otuLabels = samplesFilter.otu_labels.slice(0,10);
 
+// 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
+// * Use `sample_values` as the values for the bar chart.
+// * Use `otu_ids` as the labels for the bar chart.
+// * Use `otu_labels` as the hovertext for the chart.
+
         var trace = {
             x: sampleValues,
             y: otuIDs,
@@ -23,13 +28,24 @@ function buildPlot(id) {
             type: "bar",
             orientation: "h"
         };
+
+        var data = [trace];
+        var layout_bar = {
+            title: "OTUs - Top 10",
+            yaxis:{
+                tickmode:"linear"
+            },
+            margin: {
+                l:100,
+                r:100,
+                t:100,
+                b:30
+            }
+        };
+
+        Plotly.plotIt("bar",data,layout);
     })
 }
-
-// 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
-// * Use `sample_values` as the values for the bar chart.
-// * Use `otu_ids` as the labels for the bar chart.
-// * Use `otu_labels` as the hovertext for the chart.
 
 // 3. Create a bubble chart that displays each sample.
 // * Use `otu_ids` for the x values.
