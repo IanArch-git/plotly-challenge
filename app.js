@@ -2,10 +2,8 @@
 // 1. Use the D3 library to read in `samples.json`.
 function buildPlot(id) {
     d3.json("samples.json").then((data) => {
-        // console.log(data);
         
         var samplesFilter = data.samples.filter(s=> s.id.toString() ===id)[0];
-        // console.log(samplesFilter);
         
         var sampleValues = samplesFilter.sample_values.slice(0,10).reverse();
         
@@ -44,8 +42,6 @@ function buildPlot(id) {
         };
 
         Plotly.plotIt("bar",data,layout);
-    })
-}
 
 // 3. Create a bubble chart that displays each sample.
 // * Use `otu_ids` for the x values.
@@ -76,13 +72,31 @@ function buildPlot(id) {
         };
 
         Plotly.plotIt("bubble",data_bubble,layout_bubble);
+    });
+}
 
-// 4. Display the sample metadata, i.e., an individual's demographic information.
-
+// 4. Display the sample metadata
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
+function plotInfo(id) {
+    d3.json("samples.json").then((data)=> {
+        
+        var metadata = data.metadata;
+        console.log(metadata);
+        
+        var metadataFilter = metadata.filter(meta => meta.id.toString() === id)[0];
+
+        var demographics = d3.select("#sample-metadata");
+        demographics.html("");
+
+        Object.defineProperties(results).forEach((key)=> {
+            demographics.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
+        });
+    });
+}
 
 // 6. Update all of the plots any time that a new sample is selected.
 
+    
 
 // ## Advanced Challenge Assignment (Optional)
 
