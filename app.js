@@ -27,7 +27,7 @@ function buildPlot(id) {
             orientation: "h"
         };
 
-        var data = [trace];
+        var data_bar = [trace];
         var layout_bar = {
             title: "OTUs - Top 10",
             yaxis:{
@@ -41,7 +41,7 @@ function buildPlot(id) {
             }
         };
 
-        Plotly.plotIt("bar",data,layout);
+        Plotly.newPlot("bar",data_bar,layout_bar);
 
 // 3. Create a bubble chart that displays each sample.
 // * Use `otu_ids` for the x values.
@@ -71,7 +71,7 @@ function buildPlot(id) {
             width: 800
         };
 
-        Plotly.plotIt("bubble",data_bubble,layout_bubble);
+        Plotly.newPlot("bubble",data_bubble,layout_bubble);
     });
 }
 
@@ -88,7 +88,7 @@ function plotInfo(id) {
         var demographics = d3.select("#sample-metadata");
         demographics.html("");
 
-        Object.defineProperties(results).forEach((key)=> {
+        Object.entries(metadataFilter).forEach((key)=> {
             demographics.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
         });
     });
